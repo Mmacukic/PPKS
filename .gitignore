@@ -1,0 +1,83 @@
+# Build results
+bin/
+obj/
+out/
+
+# Rider / JetBrains
+.idea/
+
+# Visual Studio
+.vscode/
+.vs/
+*.user
+*.suo
+
+# ASP.NET / IIS
+*.log
+*.vspscc
+*.vssscc
+
+# User-specific files
+*.userprefs
+*.userosscache
+*.sln.docstates
+
+# Auto-generated files
+Generated_Code/
+
+# Web build artifacts
+wwwroot/dist/
+wwwroot/node_modules/
+node_modules/
+bower_components/
+
+# npm / Yarn logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment files
+.env
+*.env.local
+
+# Secrets (if using UserSecrets)
+secrets.json
+
+# EF Core
+Migrations/**/Snapshot.cs
+Migrations/**/__EFMigrationsHistory.cs
+
+# Resharper / DotCover
+_ReSharper*/
+*.DotSettings.user
+
+# Backup & temp files
+*.bak
+*.tmp
+*.swp
+*~
+
+# Publish folder
+publish/
+*.publishsettings
+
+# OS-specific
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Ignore build artifacts
+bin/
+obj/
+*.cache
+*.log
+*.tmp
+*.user
+*.suo
+
+# Rider IDE files
+.idea/
+*.sln.iml
+*.csproj.nuget.g.props
+*.csproj.nuget.g.targets
+*.restore.info
