@@ -20,11 +20,23 @@
             <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Shipments" asp-action="Index">Shipments</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Profile" asp-action="Index">Profile</a>
                     </li>
+                    @using Microsoft.AspNetCore.Authentication
+                    @using Microsoft.AspNetCore.Authentication.Cookies
+                    @using Microsoft.AspNetCore.Authorization
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li>@User.Identity.Name</li>
+                            <li><a href="/account/logout">Odjava</a></li>
+                        }
+                        else
+                        {
+                            <li><a href="/account/login">Prijava</a></li>
+                        }
                 </ul>
             </div>
         </div>

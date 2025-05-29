@@ -1,0 +1,24 @@
+@model PPKS_projekt.Models.User
+
+@{
+    ViewData["Title"] = "Profil korisnika";
+}
+
+<h2>Vaš profil</h2>
+
+<table class="table">
+    <tbody>
+    <tr>
+        <th>Ime</th>
+        <td>@Model.FirstName</td>
+    </tr>
+    <tr>
+        <th>Prezime</th>
+        <td>@Model.LastName</td>
+    </tr>
+    <tr>
+        <th>Email</th>
+        <td>@Model.Email</td>
+    </tr>
+    </tbody>
+</table>

@@ -1,0 +1,53 @@
+@model PPKS_projekt.Models.Shipment
+
+@{
+    ViewData["Title"] = "Detalji dostave";
+}
+
+<h2>Detalji dostave: @Model.TrackingNumber</h2>
+
+<p><strong>Status:</strong> @Model.CurrentStatus</p>
+<p><strong>Vrijeme narudžbe:</strong> @Model.CreatedAt.ToString("g")</p>
+
+<h3>Povijest statusa</h3>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Status</th>
+        <th>Vrijeme promjene</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var log in Model.StatusLogs.OrderByDescending(l => l.ChangedAt))
+    {
+        <tr>
+            <td>@log.Status</td>
+            <td>@log.ChangedAt.ToString("g")</td>
+        </tr>
+    }
+    </tbody>
+</table>
+<p><strong>Status:</strong> <span id="statusText">@Model.CurrentStatus</span></p>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+    <script>
+        const shipmentId = "@Model.Id";
+
+        const connection = new signalR.HubConnectionBuilder()
+            .withUrl(`/orderHub?shipmentId=${shipmentId}`)
+            .build();
+
+        connection.on("ReceiveStatusUpdate", (newStatus, changedAt) => {
+            document.getElementById("statusText").textContent = newStatus;
+
+            const table = document.querySelector("table tbody");
+            const row = document.createElement("tr");
+            row.innerHTML = `<td>${newStatus}</td><td>${changedAt}</td>`;
+            table.prepend(row);
+        });
+
+        connection.start().catch(err => console.error(err));
+    </script>
+}
