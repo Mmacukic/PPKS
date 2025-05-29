@@ -1,0 +1,29 @@
+@model List<PPKS_projekt.Models.Shipment>
+
+@{
+    ViewData["Title"] = "Moje dostave";
+}
+
+<h2>Moje dostave</h2>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Broj pošiljke</th>
+        <th>Status</th>
+        <th>Vrijeme kreiranja</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var shipment in Model)
+    {
+        <tr>
+            <td>@shipment.TrackingNumber</td>
+            <td>@shipment.CurrentStatus</td>
+            <td>@shipment.CreatedAt.ToString("g")</td>
+            <td><a asp-action="Details" asp-route-id="@shipment.Id">Detalji</a></td>
+        </tr>
+    }
+    </tbody>
+</table>

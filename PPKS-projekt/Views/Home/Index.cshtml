@@ -1,8 +1,44 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Početna";
+    var isAuthenticated = User.Identity?.IsAuthenticated ?? false;
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container py-5">
+    <div class="text-center mb-4">
+        <h1 class="display-4 fw-bold">Dobrodošli u sustav za praćenje dostava</h1>
+        <p class="lead text-muted">Pratite svoje pošiljke u stvarnom vremenu, provjerite svoj profil i povijest dostava.</p>
+    </div>
+
+    <div class="row justify-content-center">
+        @if (isAuthenticated)
+        {
+            <div class="col-md-6 text-center">
+                <a href="/Profile" class="btn btn-primary btn-lg m-2">Moj profil</a>
+                <a href="/Shipments" class="btn btn-outline-primary btn-lg m-2">Moje dostave</a>
+            </div>
+        }
+        else
+        {
+            <div class="col-md-8 text-center">
+                <a href="/account/login" class="btn btn-success btn-lg px-4 py-2">Prijavite se kako biste započeli</a>
+            </div>
+        }
+    </div>
+
+    <hr class="my-5" />
+
+    <div class="row text-center">
+        <div class="col-md-4">
+            <h4>✔️ Sigurna autentifikacija</h4>
+            <p>Prijava putem Auth0 omogućava siguran i jednostavan pristup vašim podacima.</p>
+        </div>
+        <div class="col-md-4">
+            <h4>🚚 Dostave u stvarnom vremenu</h4>
+            <p>Pratite status svoje narudžbe uživo, zahvaljujući SignalR tehnologiji.</p>
+        </div>
+        <div class="col-md-4">
+            <h4>📦 Povijest pošiljki</h4>
+            <p>Jednostavno pregledajte sve vaše prethodne dostave i njihovu statusnu povijest.</p>
+        </div>
+    </div>
 </div>
